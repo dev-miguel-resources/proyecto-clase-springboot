@@ -1,5 +1,7 @@
 package cl.scd.service;
 
-public interface IEspecialidadService {
+import cl.scd.model.Especialidad;
+
+public interface IEspecialidadService extends ICRUD<Especialidad> {
 
 }

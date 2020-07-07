@@ -1,5 +1,7 @@
 package cl.scd.service;
 
-public interface IMedicoService {
+import cl.scd.model.Medico;
+
+public interface IMedicoService extends ICRUD<Medico> {
 
 }

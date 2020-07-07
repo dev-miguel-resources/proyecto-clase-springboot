@@ -1,5 +1,11 @@
 package cl.scd.repo;
 
-public interface IConsultaRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cl.scd.model.Consulta;
+
+public interface IConsultaRepo extends JpaRepository<Consulta, Integer> {
+	
+	//Faltan definir consultas
 
 }

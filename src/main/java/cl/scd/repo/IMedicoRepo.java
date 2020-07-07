@@ -1,5 +1,9 @@
 package cl.scd.repo;
 
-public interface IMedicoRepo {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import cl.scd.model.Medico;
+
+public interface IMedicoRepo extends JpaRepository<Medico, Integer> {
 
 }

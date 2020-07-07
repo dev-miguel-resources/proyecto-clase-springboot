@@ -1,5 +1,11 @@
 package cl.scd.service;
 
-public interface IMenuService {
+import java.util.List;
 
+import cl.scd.model.Menu;
+
+public interface IMenuService extends ICRUD<Menu> {
+	
+	List<Menu> listarMenuPorUsuario(String nombre);
+	
 }

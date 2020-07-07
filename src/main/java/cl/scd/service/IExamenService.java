@@ -1,5 +1,7 @@
 package cl.scd.service;
 
-public interface IExamenService {
+import cl.scd.model.Examen;
+
+public interface IExamenService extends ICRUD<Examen> {
 
 }
