@@ -2,8 +2,8 @@ package cl.scd.dto;
 
 import cl.scd.model.Medico;
 import cl.scd.model.Paciente;
+import org.springframework.hateoas.ResourceSupport;
 
-// Falta inyectar hateoas en el pom
 public class ConsultaDTO extends ResourceSupport{
 
 	private Integer idConsulta;
