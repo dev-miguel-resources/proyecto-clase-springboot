@@ -81,11 +81,11 @@ public class ConsultaController {
 			d.add(linkTo.withSelfRel());
 			consultasDTO.add(d);
 			
-			ControllerLinkBuilder linkTo1 = LinkTo(methodOn(PacienteController.class).listarPorId(c.getPaciente().getIdPaciente()));
+			ControllerLinkBuilder linkTo1 = linkTo(methodOn(PacienteController.class).listarPorId(c.getPaciente().getIdPaciente()));
 			d.add(linkTo1.withSelfRel());
 			consultasDTO.add(d);
 			
-			ControllerLinkBuilder linkTo2 = LinkTo(methodOn(MedicoController.class).listarPorId(c.getMedico().getIdMedico()));
+			ControllerLinkBuilder linkTo2 = linkTo(methodOn(MedicoController.class).listarPorId(c.getMedico().getIdMedico()));
 			d.add(linkTo2.withSelfRel());
 			consultasDTO.add(d);	
 		}
