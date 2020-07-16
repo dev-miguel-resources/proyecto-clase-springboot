@@ -19,6 +19,10 @@ import cl.scd.model.Consulta;
 import cl.scd.repo.IConsultaExamenRepo;
 import cl.scd.repo.IConsultaRepo;
 import cl.scd.service.IConsultaService;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 @Service
 public class ConsultaServiceImpl implements IConsultaService {

@@ -28,10 +28,10 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
-	@Value("${security.signin-key}")
+	@Value("${security.signing-key}")
 	private String signingKey;
 	
-	@Value("${security.enconding-strength}")
+	@Value("${security.encoding-strength}")
 	private Integer encondingStrength;
 	
 	@Value("${security.security-realm}")
@@ -79,8 +79,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean
 	public TokenStore tokenStore() {
-		//return new JwtTokenStore(accessTokenConverter());
-		return new JdbcTokenStore(this.dataSource);
+		return new JwtTokenStore(accessTokenConverter());
+		//return new JdbcTokenStore(this.dataSource);
 	}
 	
 	@Bean
