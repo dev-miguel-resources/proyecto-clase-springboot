@@ -25,26 +25,31 @@ import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	
-	
+public class SecurityConfig extends WebSecurityConfigurerAdapter{
+
 	@Value("${security.signing-key}")
 	private String signingKey;
-	
+
 	@Value("${security.encoding-strength}")
-	private Integer encondingStrength;
-	
+	private Integer encodingStrength;
+
 	@Value("${security.security-realm}")
 	private String securityRealm;
 	
-	@Autowired
+	@Autowired	
 	private UserDetailsService userDetailsService;
+		
+	@Autowired
+	private DataSource dataSource;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcrypt;
 	
-	@Autowired
-	private DataSource dataSource;
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+		return bCryptPasswordEncoder;
+	}	
 	
 	@Bean
 	@Override
@@ -52,35 +57,35 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return super.authenticationManager();
 	}
 	
-	@Autowired
-	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+	@Autowired	
+	public void configure(AuthenticationManagerBuilder auth) throws Exception{
 		auth.userDetailsService(userDetailsService).passwordEncoder(bcrypt);
 	}
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-		.sessionManagement()
-		.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and()
-		.httpBasic()
-		.realmName(securityRealm)
-		.and()
-		.csrf()
-		.disable();
+		http		
+        .sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .and()
+        .httpBasic()
+        .realmName(securityRealm)
+        .and()
+        .csrf()
+        .disable();        
 	}
 	
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-		converter.setSigningKey(signingKey);
+		converter.setSigningKey(signingKey);		
 		return converter;
 	}
 	
 	@Bean
 	public TokenStore tokenStore() {
-		return new JwtTokenStore(accessTokenConverter());
-		//return new JdbcTokenStore(this.dataSource);
+		//return new JwtTokenStore(accessTokenConverter());
+		return new JdbcTokenStore(this.dataSource);
 	}
 	
 	@Bean
@@ -88,8 +93,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public DefaultTokenServices tokenServices() {
 		DefaultTokenServices defaultTokenServices = new DefaultTokenServices();
 		defaultTokenServices.setTokenStore(tokenStore());
-		defaultTokenServices.setSupportRefreshToken(true);
-		defaultTokenServices.setReuseRefreshToken(false);
+		defaultTokenServices.setSupportRefreshToken(true);			
+		defaultTokenServices.setReuseRefreshToken(false);	
 		return defaultTokenServices;
 	}
 }

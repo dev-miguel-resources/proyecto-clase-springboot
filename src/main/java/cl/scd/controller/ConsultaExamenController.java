@@ -22,9 +22,10 @@ public class ConsultaExamenController {
 	private IConsultaExamenService service;
 	
 	@GetMapping(value = "/{idConsulta}")
-	public ResponseEntity<List<ConsultaExamen>> listar(@PathVariable("idConsulta") Integer idConsulta) {
+	public ResponseEntity<List<ConsultaExamen>> listar(@PathVariable("idConsulta") Integer idconsulta) {
 		List<ConsultaExamen> consultasexamen = new ArrayList<>();
-		consultasexamen = service.listarExamenesPorConsulta(idConsulta);
+		consultasexamen = service.listarExamenesPorConsulta(idconsulta);
 		return new ResponseEntity<List<ConsultaExamen>>(consultasexamen, HttpStatus.OK);
 	}
+
 }

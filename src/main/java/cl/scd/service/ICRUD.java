@@ -3,7 +3,7 @@ package cl.scd.service;
 import java.util.List;
 
 public interface ICRUD<T> {
-	
+
 	T registrar(T obj);
 	T modificar(T obj);
 	List<T> listar();

@@ -8,11 +8,11 @@ import cl.scd.repo.ILoginRepo;
 import cl.scd.service.ILoginService;
 
 @Service
-public class LoginServiceImpl implements ILoginService {
+public class LoginServiceImpl implements ILoginService{
 	
 	@Autowired
 	private ILoginRepo repo;
-	
+
 	@Override
 	public int cambiarClave(String clave, String nombre) {
 		int rpta = 0;
@@ -30,10 +30,10 @@ public class LoginServiceImpl implements ILoginService {
 		Usuario us = null;
 		try {
 			us = repo.verificarNombreUsuario(usuario);
-			us = us != null ? us : new Usuario();		
-			} catch (Exception e) {
-				us = new Usuario();
-			}
-			return us;
+			us = us != null ? us : new Usuario();
+		} catch (Exception e) {
+			us = new Usuario();
+		}
+		return us;
 	}
 }

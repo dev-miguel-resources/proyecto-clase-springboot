@@ -22,7 +22,7 @@ public class MenuController {
 	
 	@Autowired
 	private IMenuService service;
-	
+
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<Menu>> listar() {
 		List<Menu> menues = new ArrayList<>();
@@ -30,10 +30,12 @@ public class MenuController {
 		return new ResponseEntity<List<Menu>>(menues, HttpStatus.OK);
 	}
 	
-	@PostMapping(value ="/usuario", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<Menu>> listar(@RequestBody String nombre){
+	@PostMapping(value = "/usuario", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<Menu>> listar(@RequestBody String nombre) {
 		List<Menu> menus = new ArrayList<>();
 		menus = service.listarMenuPorUsuario(nombre);
 		return new ResponseEntity<List<Menu>>(menus, HttpStatus.OK);
 	}
+	
+	
 }

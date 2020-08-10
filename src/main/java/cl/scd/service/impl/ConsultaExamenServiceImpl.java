@@ -10,14 +10,13 @@ import cl.scd.repo.IConsultaExamenRepo;
 import cl.scd.service.IConsultaExamenService;
 
 @Service
-public class ConsultaExamenServiceImpl implements IConsultaExamenService {
-	
+public class ConsultaExamenServiceImpl implements IConsultaExamenService{
+
 	@Autowired
 	private IConsultaExamenRepo repo;
 	
 	@Override
-	public List<ConsultaExamen> listarExamenesPorConsulta(Integer idConsulta) {
-		return repo.listarExamenesPorConsulta(idConsulta);
+	public List<ConsultaExamen> listarExamenesPorConsulta(Integer idconsulta) {
+		return repo.listarExamenesPorConsulta(idconsulta);
 	}
-
 }

@@ -6,39 +6,41 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service
-public class AuthServiceImpl {
+public class AuthServiceImpl {	
 	
 	public boolean tieneAcceso(String path) {
 		boolean rpta = false;
-		
+
 		String metodoRol = "";
 		
-		switch(path) {
+		switch (path) {
 		case "listar":
-			metodoRol = "ADMIN";
+				metodoRol = "ADMIN";
 			break;
+
 		case "listarId":
-			metodoRol = "ADMIN,USER,DBA";
+				metodoRol = "ADMIN,USER,DBA";
 			break;
 		}
 		
 		String metodoRoles[] = metodoRol.split(",");
 		
-		Authentication usuarioLogueado = SecurityContextHolder.getContext().getAuthentication();
+		Authentication usuaroLoguado = SecurityContextHolder.getContext().getAuthentication();
 		
-		System.out.println(usuarioLogueado.getName());
+		System.out.println(usuaroLoguado.getName());
 		
-		for(GrantedAuthority auth : usuarioLogueado.getAuthorities()) {
+		for (GrantedAuthority auth : usuaroLoguado.getAuthorities()) {
 			String rolUser = auth.getAuthority();
 			
 			System.out.println(rolUser);
 			
-			for(String rolMet : metodoRoles) {
-				if(rolUser.equalsIgnoreCase(rolMet)) {
+			for (String rolMet : metodoRoles) { 
+				if (rolUser.equalsIgnoreCase(rolMet)) {
 					rpta = true;
 				}
 			}
 		}
+
 		return rpta;
 	}
 }

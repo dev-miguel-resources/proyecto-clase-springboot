@@ -6,10 +6,7 @@ import cl.scd.model.ResetToken;
 
 public interface IResetTokenRepo extends JpaRepository<ResetToken, Integer> {
 	
-	
-	// Query method o query predefinida
-	
-	// from ResetToken where token = :?
+	//from ResetToken where token = :?
 	ResetToken findByToken(String token);
 
 }

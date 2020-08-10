@@ -7,18 +7,16 @@ import cl.scd.dto.ConsultaResumenDTO;
 import cl.scd.dto.FiltroConsultaDTO;
 import cl.scd.model.Consulta;
 
-public interface IConsultaService extends ICRUD<Consulta> {
-	
+public interface IConsultaService extends ICRUD<Consulta>{
+
 	Consulta registrarTransaccional(ConsultaListaExamenDTO dto);
 	
 	List<Consulta> buscar(FiltroConsultaDTO filtro);
-	
+
 	List<Consulta> buscarFecha(FiltroConsultaDTO filtro);
 	
-	List<ConsultaResumenDTO> listarResumen(); //procedimiento almacenado
+	List<ConsultaResumenDTO> listarResumen();
 	
-	byte[] generarReporte(); // pdf y el manejo de jasper reports
-	
-	
-
+	byte[] generarReporte();
+		
 }

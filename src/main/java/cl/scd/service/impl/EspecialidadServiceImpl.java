@@ -12,34 +12,35 @@ import cl.scd.service.IEspecialidadService;
 
 @Service
 public class EspecialidadServiceImpl implements IEspecialidadService{
-	
-	@Autowired
+
+	@Autowired	
 	private IEspecialidadRepo repo;
 	
 	@Override
 	public Especialidad registrar(Especialidad obj) {
 		return repo.save(obj);
 	}
-	
+
 	@Override
-	public Especialidad modificar(Especialidad obj) {
+	public Especialidad modificar(Especialidad obj) {		
 		return repo.save(obj);
 	}
-	
+
 	@Override
 	public List<Especialidad> listar() {
 		return repo.findAll();
 	}
-	
+
 	@Override
 	public Especialidad leerPorId(Integer id) {
 		Optional<Especialidad> op = repo.findById(id);
 		return op.isPresent() ? op.get() : new Especialidad();
 	}
-	
+
 	@Override
-	public boolean eliminar(Integer id) {
+	public boolean eliminar(Integer id) {		
 		repo.deleteById(id);
 		return true;
 	}
+
 }
